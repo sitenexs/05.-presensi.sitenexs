@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Absensi Karyawan GPS & Harga HRIS Terbaik | Sitenexs</title>
+    <meta name="description" content="Sistem presensi online berbasis GPS dan rekap otomatis untuk bisnis & UMKM. Tingkatkan disiplin tim dengan harga terjangkau. Coba Sitenexs Presensi sekarang!">
+    <meta name="keywords" content="presensi Sitenexs, absensi karyawan online, aplikasi presensi GPS, harga software HRIS, absensi UMKM, software kasir absensi">
+    <meta name="author" content="Sitenexs">
+    <meta name="language" content="id-ID">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="canonical" content="https://account.sitenexs.site/presensi">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FY8W3CJKFL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FY8W3CJKFL');
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://sitenexs.site/assets/favicon/favicon.png">
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #eff6ff;
+            --primary-glow: rgba(37, 99, 235, 0.15);
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            
+            --border-subtle: #e2e8f0;
+            --border-focus: #3b82f6;
+            
+            --shadow-card: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+            --shadow-btn: 0 4px 12px rgba(37, 99, 235, 0.25);
+            
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+            --radius-full: 9999px;
+            
+            --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.04) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.03) 0px, transparent 50%);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-main);
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .nav-link {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border-subtle);
+            color: var(--text-main);
+        }
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+            box-shadow: var(--shadow-btn);
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+        .btn-accent:hover {
+            background-color: #059669;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 1rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.85rem;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: var(--radius-full);
+            font-size: 0.775rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border: 1px solid #bfdbfe;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4.5vw, 3.25rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-main);
+            max-width: 850px;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 1.5vw, 1.15rem);
+            color: var(--text-muted);
+            max-width: 650px;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3.5rem;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .hero-cta .btn {
+            flex: 1;
+            padding: 0.85rem 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Hero Image Showcase */
+        .hero-image-container {
+            width: 100%;
+            max-width: 1000px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            max-height: 500px;
+        }
+
+        /* Section Global */
+        .section-container {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-focus);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-md);
+            background-color: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15);
+            transform: scale(1.02);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.85rem;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-header {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .pricing-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-header p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .price {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-align: center;
+            margin-bottom: 1.75rem;
+        }
+
+        .price span {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-bottom: 2rem;
+            flex: 1;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pricing-features li i {
+            color: var(--accent);
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .testimonial-content {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .author-info h4 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .author-info p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            padding: 2rem 1rem 5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+        }
+
+        .cta-box h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            font-size: 1rem;
+            color: #94a3b8;
+            max-width: 550px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #ffffff;
+            border-top: 1px solid var(--border-subtle);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="https://sitenexs.site" class="logo">
+            <img src="https://sitenexs.site/assets/logo/logo.png" alt="Sitenexs Logo" class="logo-img" onerror="this.style.display='none'">
+            <span class="logo-text">Sitenexs Presensi</span>
+        </a>
+        <div class="nav-links">
+            <a href="#features" class="nav-link">Fitur</a>
+            <a href="#pricing" class="nav-link">Harga</a>
+            <a href="#testimonials" class="nav-link">Testimoni</a>
+            <a href="https://wa.me/6281234567890" target="_blank" class="nav-link">Bantuan</a>
+        </div>
+        <div class="nav-actions">
+            <!-- Tombol Berubah Menjadi Profil Pengguna Saat Sudah Masuk -->
+            <a href="profil.html" class="btn btn-primary" id="profileBtn">
+                <i class="fas fa-user-circle"></i> Profil
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">
+            <i class="fas fa-bolt"></i> Platform HRIS & Absensi Bisnis Terpercaya
+        </div>
+        <h1>Solusi Presensi Karyawan Modern dengan <span>Validasi GPS & Rekap Otomatis</span></h1>
+        <p>Tingkatkan efisiensi operasional dan pantau kehadiran tim secara real-time langsung dari handphone atau komputer. Sangat cocok untuk toko, kafe, kantor, dan UMKM.</p>
+        
+        <div class="hero-cta">
+            <a href="dashboard.html" class="btn btn-primary">
+                <i class="fas fa-rocket"></i> Buka Dashboard
+            </a>
+            <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-outline">
+                <i class="fab fa-whatsapp"></i> Konsultasi Gratis
+            </a>
+        </div>
+
+        <!-- Ilustrasi / Banner Mockup -->
+        <div class="hero-image-container">
+            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80" alt="Dashboard Presensi Sitenexs Preview" loading="lazy">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section-container">
+        <div class="section-title">
+            <h2>Fitur Unggulan Sitenexs Presensi</h2>
+            <p>Dirancang khusus untuk menghapus kecurangan absensi manual dan mempercepat proses rekapitulasi gaji bulanan.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-location-dot"></i></div>
+                <h3>Validasi Radius GPS</h3>
+                <p>Karyawan hanya dapat melakukan absen masuk atau pulang saat berada di titik koordinat lokasi kerja yang telah Anda tentukan.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                <h3>Pencatatan Waktu Real-Time</h3>
+                <p>Mencatat jam kedatangan dan kepulangan secara akurat berdasarkan server terpusat yang aman dari manipulasi perangkat.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+                <h3>Rekapitulasi Otomatis</h3>
+                <p>Data absensi harian langsung terhimpun dalam bentuk laporan ringkas yang memudahkan perhitungan performa kerja tim.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                <h3>Mobile Responsive</h3>
+                <p>Dapat diakses dengan sangat mulus melalui smartphone Android maupun iOS tanpa perlu instalasi aplikasi tambahan yang rumit.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+                <h3>Keamanan Cloud Terjamin</h3>
+                <p>Seluruh riwayat presensi disimpan menggunakan infrastruktur database cloud modern yang terenkripsi dan aman.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                <h3>Dukungan Teknis Prioritas</h3>
+                <p>Tim support Sitenexs siap sedia membantu kendala konfigurasi koordinat GPS atau pengelolaan akun usaha Anda.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section-container" style="background-color: #f1f5f9;">
+        <div class="section-title">
+            <h2>Pilihan Paket Harga Terjangkau</h2>
+            <p>Investasi terbaik untuk mendisiplinkan operasional bisnis Anda tanpa biaya tersembunyi.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Paket Starter / UMKM -->
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Starter UMKM</h3>
+                    <p>Cocok untuk usaha rintisan & toko kecil</p>
+                </div>
+                <div class="price">Rp 99rb <span>/ bulan</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Hingga 15 Karyawan Aktif</li>
+                    <li><i class="fas fa-check"></i> Validasi GPS Lokasi Kerja</li>
+                    <li><i class="fas fa-check"></i> Absen Masuk & Pulang Harian</li>
+                    <li><i class="fas fa-check"></i> Riwayat Presensi Real-Time</li>
+                    <li><i class="fas fa-check"></i> Dukungan Email & Chat</li>
+                </ul>
+                <a href="sign-in.html" class="btn btn-outline">Pilih Paket Starter</a>
+            </div>
+
+            <!-- Paket Pro / Business -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">Paling Populer</div>
+                <div class="pricing-header">
+                    <h3>Business Pro</h3>
+                    <p>Ideal untuk bisnis berkembang & cabang</p>
+                </div>
+                <div class="price">Rp 199rb <span>/ bulan</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Karyawan Tanpa Batas</li>
+                    <li><i class="fas fa-check"></i> Validasi GPS Multi-Lokasi / Cabang</li>
+                    <li><i class="fas fa-check"></i> Rekapitulasi & Unduh Laporan</li>
+                    <li><i class="fas fa-check"></i> Akses Dashboard Admin Lengkap</li>
+                    <li><i class="fas fa-check"></i> Prioritas Bantuan WhatsApp Support</li>
+                </ul>
+                <a href="sign-in.html" class="btn btn-primary">Mulai Paket Pro</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-container">
+        <div class="section-title">
+            <h2>Apa Kata Pemilik Usaha?</h2>
+            <p>Pengalaman nyata dari para pelaku bisnis yang telah menggunakan sistem presensi Sitenexs.</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-content">"Sejak pakai Sitenexs Presensi, karyawan tidak bisa lagi titip absen karena divalidasi langsung via GPS toko. Rekapitulasi gaji akhir bulan jadi jauh lebih cepat!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">BS</div>
+                    <div class="author-info">
+                        <h4>Budi Santoso</h4>
+                        <p>Pemilik Jaringan Kafe & Resto</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-content">"Tampilan dashboard-nya sangat responsif di HP. Saya bisa mengecek siapa saja yang sudah masuk kerja hari ini meskipun sedang berada di luar kota."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SN</div>
+                    <div class="author-info">
+                        <h4>Siti Nurhaliza</h4>
+                        <p>Manajer Operasional Toko Retail</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="cta-box">
+            <h2>Siap Meningkatkan Disiplin & Produktivitas Tim?</h2>
+            <p>Bergabunglah bersama para pengusaha modern lainnya. Mulai sistem absensi digital usaha Anda sekarang juga.</p>
+            <a href="dashboard.html" class="btn btn-accent" style="padding: 0.85rem 2rem; font-size: 1rem;">
+                <i class="fas fa-arrow-right"></i> Buka Dashboard Utama
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2026 Sitenexs Ecosystem. Hak Cipta Dilindungi.
+    </footer>
+
+</body>
+</html>
